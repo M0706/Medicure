@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
 import { StyleSheet,
-  Alert, 
+  Alert,
   Text,
   TouchableOpacity,
-  TextInput, View, AsyncStorage } from 'react-native';
-
+  View, AsyncStorage } from 'react-native';
+  import { Avatar, IconButton, Card, Title, Paragraph, TextInput, Colors } from 'react-native-paper';
 export default class loginScreen extends Component{
 
   state={
@@ -32,24 +32,59 @@ export default class loginScreen extends Component{
   render(){
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Phone Number"
-        style={styles.input}
-        value={this.state.phone}
+    <Card style={{elevation: 8}}>
+    <Card.Title title="Login" titleStyle={{ textDecorationColor: 'yellow',paddingLeft: 20,paddingTop: 10}}/>
+
+    <Card.Content>
+    <TextInput
+    label='Phone'
+    clear
+    value={this.state.phone}
         onChangeText={this.handlechange('phone')}
         keyboardType='number-pad'
-        
-        />
-        <TextInput
-        placeholder="Name"
-        style={styles.input}
-        value={this.state.name}
+    mode="outlined"
+    icon="camera"
+    style={{padding: 10}}
+    theme={{
+         colors: {
+                     background: '#fff'
+            }
+      }}
+
+    />
+    <TextInput
+    label='Password'
+    focused
+    clear
+    value={this.state.name}
         onChangeText={this.handlechange('name')}
-        />
-        <TouchableOpacity onPress={this.submit}>
-          <Text style={styles.BtnType}>Enter</Text>
-        </TouchableOpacity>
-     
+    mode="outlined"
+    style={{padding: 10}}
+    theme={{
+         colors: {
+                     background: '#fff'
+            }
+      }}
+
+    />
+    </Card.Content>
+
+    <Card.Actions style={{justifyContent: 'center'}}>
+    <TouchableOpacity onPress={this.submit}>
+    <IconButton
+    icon="arrow-right"
+    size={30}
+    color="white"
+
+    style={{backgroundColor: "red",borderRadius:30,height: 60,width:60 ,marginBottom:  -35,alignItems: 'center',justifyContent: 'center'}}/>
+
+// NOTE: if you click on the upper half of the button only then it will work need to fix that 
+</TouchableOpacity>
+
+    </Card.Actions>
+  </Card>
+
+
     </View>
   );
 }
@@ -59,8 +94,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    padding: 30,
     justifyContent: 'center',
+    marginTop: -100
   },
   input:{
     padding:10,
@@ -72,6 +108,6 @@ const styles = StyleSheet.create({
   BtnType:{
     color:'darkblue',
     fontSize:20
-  
+
   }
 });
