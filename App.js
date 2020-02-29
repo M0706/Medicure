@@ -1,19 +1,37 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native'
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Login from './screens/login'
+import Aux from './hoc/Aux'
 
-export default function App() {
+const Drawer = createDrawerNavigator();
+
+function DrawerContent() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Drawer content</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// function HomeScreen() {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Home Screen</Text>
+//       <Login/>
+//     </View>
+//   );
+// }
+
+export default function App(){
+  return (
+    <Aux>
+    <NavigationContainer>
+          <Drawer.Navigator drawerContent={() => <DrawerContent />}>
+      <Drawer.Screen name="Home" component={Login} />
+    </Drawer.Navigator>
+    </NavigationContainer>
+    </Aux>
+  );
+};
