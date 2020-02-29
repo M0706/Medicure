@@ -75,11 +75,10 @@ export default class loginScreen extends Component{
     icon="arrow-right"
     size={30}
     color="white"
-
     style={{backgroundColor: "red",borderRadius:30,height: 60,width:60 ,marginBottom:  -35,alignItems: 'center',justifyContent: 'center'}}/>
-
-// NOTE: if you click on the upper half of the button only then it will work need to fix that 
 </TouchableOpacity>
+
+
 
     </Card.Actions>
   </Card>
