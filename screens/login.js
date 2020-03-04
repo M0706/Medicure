@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import {Avatar, IconButton, Card, Title, Paragraph, TextInput, Colors} from 'react-native-paper';
 import 'react-native-gesture-handler';
+
 export default class loginScreen extends Component {
 
     state = {
@@ -21,9 +22,9 @@ export default class loginScreen extends Component {
     }
     submit = async () => {
 
-            //save user data
-            //alert(this.state.phone + '\n' + this.state.name)
-            await AsyncStorage.setItem("userphone", JSON.stringify(this.state.phone))
+        //save user data
+        //alert(this.state.phone + '\n' + this.state.name)
+        await AsyncStorage.setItem("userphone", JSON.stringify(this.state.phone))
 
     }
 
@@ -66,8 +67,14 @@ export default class loginScreen extends Component {
 
                         />
                         <TouchableOpacity>
-                            <View style={{justifyContent: 'flex-end',color: 'red'}}>
-                                <Text onPress={() => this.props.navigation.navigate("signUp")} style={{justifyContent: 'flex-end',color: '#8334eb', paddingLeft: 20,paddingBottom:4}}>
+                            <View style={{justifyContent: 'flex-end', color: 'red'}}>
+                                <Text onPress={() => this.props.navigation.navigate("signUp")}
+                                      style={{
+                                          justifyContent: 'flex-end',
+                                          color: '#8334eb',
+                                          paddingLeft: 20,
+                                          paddingBottom: 4
+                                      }}>
                                     New User? Sign Up.
                                 </Text>
                             </View>
@@ -81,15 +88,7 @@ export default class loginScreen extends Component {
                                 icon="arrow-right"
                                 size={30}
                                 color="white"
-                                style={{
-                                    backgroundColor: "#8334eb",
-                                    borderRadius: 30,
-                                    height: 60,
-                                    width: 60,
-                                    marginBottom: -35,
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}/>
+                                style={styles.IconButton}/>
                         </TouchableOpacity>
 
 
@@ -121,5 +120,14 @@ const styles = StyleSheet.create({
         color: 'darkblue',
         fontSize: 20
 
+    },
+    IconButton: {
+        backgroundColor: "#8334eb",
+        borderRadius: 30,
+        height: 60,
+        width: 60,
+        marginBottom: -35,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
