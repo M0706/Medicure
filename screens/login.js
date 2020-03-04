@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
-    Alert,
     Text,
     TouchableOpacity,
     View, AsyncStorage
 } from 'react-native';
 import {Avatar, IconButton, Card, Title, Paragraph, TextInput, Colors} from 'react-native-paper';
-
+import 'react-native-gesture-handler';
 export default class loginScreen extends Component {
 
     state = {
@@ -21,15 +20,11 @@ export default class loginScreen extends Component {
         })
     }
     submit = async () => {
-        if (this.state.phone.length < 10) {
-            Alert.alert("Error", "Wrong phone Number")
-        } else if (this.state.name.length < 3) {
-            Alert.alert("Error", "Wrong name")
-        } else {
+
             //save user data
             //alert(this.state.phone + '\n' + this.state.name)
             await AsyncStorage.setItem("userphone", JSON.stringify(this.state.phone))
-        }
+
     }
 
     render() {
@@ -41,11 +36,10 @@ export default class loginScreen extends Component {
 
                     <Card.Content>
                         <TextInput
-                            label='Phone'
+                            label='Email'
                             clear
-                            value={this.state.phone}
+                            value={this.state.email}
                             onChangeText={this.handlechange('phone')}
-                            keyboardType='number-pad'
                             mode="outlined"
                             icon="camera"
                             style={{padding: 10}}
@@ -71,6 +65,14 @@ export default class loginScreen extends Component {
                             }}
 
                         />
+                        <TouchableOpacity>
+                            <View style={{justifyContent: 'flex-end',color: 'red'}}>
+                                <Text onPress={() => this.props.navigation.navigate("signUp")} style={{justifyContent: 'flex-end',color: '#8334eb', paddingLeft: 20,paddingBottom:4}}>
+                                    New User? Sign Up.
+                                </Text>
+                            </View>
+
+                        </TouchableOpacity>
                     </Card.Content>
 
                     <Card.Actions style={{justifyContent: 'center'}}>
@@ -80,7 +82,7 @@ export default class loginScreen extends Component {
                                 size={30}
                                 color="white"
                                 style={{
-                                    backgroundColor: "red",
+                                    backgroundColor: "#8334eb",
                                     borderRadius: 30,
                                     height: 60,
                                     width: 60,
