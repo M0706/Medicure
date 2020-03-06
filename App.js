@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Login from './screens/login'
+import LoginPage from './screens/Loginpage/loginpage'
 import Aux from './hoc/Aux'
 
 const Drawer = createDrawerNavigator();
@@ -29,7 +29,7 @@ export default function App(){
     <Aux>
     <NavigationContainer>
           <Drawer.Navigator drawerContent={() => <DrawerContent />}>
-      <Drawer.Screen name="Home" component={Login} />
+      <Drawer.Screen name="Home" component={LoginPage} />
     </Drawer.Navigator>
     </NavigationContainer>
     </Aux>
