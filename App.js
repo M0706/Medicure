@@ -9,6 +9,21 @@ import SignUp from "./screens/signup";
 import Aux from './hoc/Aux'
 import StackNavigator from "@react-navigation/stack/src/navigators/createStackNavigator";
 
+import firebase from 'firebase'
+
+var firebaseConfig = {
+    apiKey: "AIzaSyAHmHo1BmSp8jSwwnkrQdJKpqtuN2-xieE",
+    authDomain: "medico-879bc.firebaseapp.com",
+    databaseURL: "https://medico-879bc.firebaseio.com",
+    projectId: "medico-879bc",
+    storageBucket: "medico-879bc.appspot.com",
+    messagingSenderId: "322629357920",
+    appId: "1:322629357920:web:4c031ec36f355771d88e05",
+    measurementId: "G-LJWEHDDR8M"
+  };
+firebase.initializeApp(firebaseConfig);
+
+
 const Drawer = createDrawerNavigator();
 
 function DrawerContent() {
@@ -38,7 +53,6 @@ export default function App(){
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="signUp" component={SignUp}/>
       </Stack.Navigator>
-
     </NavigationContainer>
     </Aux>
   );

@@ -9,6 +9,9 @@ import {
 import {IconButton, Card, TextInput} from 'react-native-paper';
 import 'react-native-gesture-handler';
 
+
+
+
 export default class loginScreen extends Component {
 
   state = {

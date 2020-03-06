@@ -6,12 +6,12 @@ import {
     TouchableOpacity, View, AsyncStorage
 } from 'react-native';
 import {Button, Card, Title, Paragraph, TextInput, Colors} from 'react-native-paper';
-
+import * as FireBaseAPI from '../Authentication/firebaseAPI'
 
 export default class SignUp extends Component {
 
     state = {
-        phone: '',
+        emailid: '',
         name: '',
         password: ''
     }
@@ -22,21 +22,11 @@ export default class SignUp extends Component {
         })
     }
 
-    submit = async () => {
-        if (this.state.phone.length < 10 || this.state.phone.length > 10) {
-            Alert.alert("Error", "Wrong phone Number")
-        } else if (this.state.name.length < 3) {
-            Alert.alert("Error", "Wrong name")
-        } else if (this.state.name.match(/\d+/g) != null) //checks wheather name contains numbers
-        {
-            Alert.alert("Error", "Wrong name")
-
-        } else {
-            //save user data
-            //alert(this.state.phone + '\n' + this.state.name)
-            await AsyncStorage.setItem("userphone", JSON.stringify(this.state.phone))
-        }
+    submitdata=()=>{
+        FireBaseAPI.createUser(this.state.emailid,this.state.password)
     }
+
+  
 
     render() {
         return (
@@ -55,10 +45,9 @@ export default class SignUp extends Component {
                             }}
                             focused
                             clear
-                            label="Phone Number"
-                            value={this.state.phone}
-                            onChangeText={this.handlechange('phone')}
-                            keyboardType='number-pad'
+                            label="Emailid"
+                            value={this.state.emailid}
+                            onChangeText={this.handlechange('emailid')}
 
                         />
                         <TextInput
@@ -97,7 +86,8 @@ export default class SignUp extends Component {
                         <TouchableOpacity onPress={this.submit} style={{width: 160, padding: 10}}>
                             <Button
                                 mode="contained"
-                                style={styles.BtnType}>Enter</Button>
+                                style={styles.BtnType}
+                                onPress={this.submitdata}>Enter</Button>
                         </TouchableOpacity>
                     </Card.Actions>
 
