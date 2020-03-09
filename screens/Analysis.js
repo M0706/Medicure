@@ -3,15 +3,24 @@ import {
   StyleSheet,
   Alert,
   Text,
-  TouchableOpacity, View,Picker, AsyncStorage, Image
+  TouchableOpacity, View, Picker, AsyncStorage, Image
 } from 'react-native';
-import {Button, Card,Title, Paragraph, TextInput, Colors, IconButton,Provider,Menu,Divider,RadioButton} from 'react-native-paper';
+import {
+  Button,
+  Card,
+  Title,
+  Paragraph,
+  TextInput,
+  Colors,
+  IconButton,
+  Provider,
+  Menu,
+  Divider,
+  RadioButton
+} from 'react-native-paper';
 
 
 export default class Analysis extends Component {
-
-
-
 
 
   render() {
@@ -25,36 +34,37 @@ export default class Analysis extends Component {
 
             <View style={styles.overlayStyle}>
               <Text style={styles.overlayTextStyle}>Analysis</Text>
-              <Text style={styles.overlayTextStyle2}>This is the analysis of the patient based on the details that you entered.</Text>
+              <Text style={styles.overlayTextStyle2}>This is the analysis of the patient based on the details that you
+                entered.</Text>
             </View>
           </View>
           <View style={styles.container}>
             <Card style={styles.cardStyle}>
-              <Card.Title title="Mr. Soham Sonawane" titleStyle={{fontWeight:'bold'}}/>
+              <Card.Title title="Mr. Soham Sonawane" titleStyle={{fontWeight: 'bold'}}/>
               <Card.Title title="+91 6377 954 885" titleStyle={{fontSize: 16}}/>
 
               <Card.Content>
-              <Text>
-                Diagnosed With - Breast Cancer
-              </Text>
-              <Text>
-                Analysis of following of CCND1:
-              </Text>
-                <Text>{'\u2022'}  ESR1</Text>
-                <Text>{'\u2022'}  PTEN</Text>
-                <Text>{'\u2022'}  CNV</Text>
+                <Text>
+                  Diagnosed With - Breast Cancer
+                </Text>
+                <Text>
+                  Analysis of following of CCND1:
+                </Text>
+                <Text>{'\u2022'} ESR1</Text>
+                <Text>{'\u2022'} PTEN</Text>
+                <Text>{'\u2022'} CNV</Text>
               </Card.Content>
-              <Card.Actions style={{justifyContent: 'space-around',marginTop: 120,marginBottom:20}}>
-                <TouchableOpacity  onPress={() => this.props.navigation.goBack()}  >
+              <Card.Actions style={{justifyContent: 'space-around', marginTop: 120, marginBottom: 20}}>
+                <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                   <Button
 
                       mode="contained"
                       style={styles.BtnTypeGray}>Go Back</Button>
-                </TouchableOpacity><TouchableOpacity  >
+                </TouchableOpacity><TouchableOpacity>
                 <Button
                     mode="contained"
                     style={styles.BtnType}
-                    onPress={()=>this.props.navigation.navigate("spDetails")}
+                    onPress={() => this.props.navigation.navigate("biopsy")}
                 >Generate Plan</Button>
               </TouchableOpacity>
               </Card.Actions>
@@ -68,10 +78,11 @@ export default class Analysis extends Component {
   }
 }
 const styles = StyleSheet.create({
-  BtnType: {backgroundColor:'blue',padding:8,borderRadius:10
-  },BtnTypeGray: {
-    padding:8,
-    backgroundColor:'gray',borderRadius:10
+  BtnType: {
+    backgroundColor: 'blue', padding: 8, borderRadius: 10
+  }, BtnTypeGray: {
+    padding: 8,
+    backgroundColor: 'gray', borderRadius: 10
   },
 
   cardStyle: {

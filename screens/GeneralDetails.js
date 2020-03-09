@@ -3,10 +3,21 @@ import {
   StyleSheet,
   Alert,
   Text,
-  TouchableOpacity, View,Picker, AsyncStorage, Image
+  TouchableOpacity, View, Picker, AsyncStorage, Image
 } from 'react-native';
-import {Button, Card,Title, Paragraph, TextInput, Colors, IconButton,Provider,Menu,Divider,RadioButton} from 'react-native-paper';
-
+import {
+  Button,
+  Card,
+  Title,
+  Paragraph,
+  TextInput,
+  Colors,
+  IconButton,
+  Provider,
+  Menu,
+  Divider,
+  RadioButton
+} from 'react-native-paper';
 
 export default class GeneralDetails extends Component {
 
@@ -14,7 +25,7 @@ export default class GeneralDetails extends Component {
     phone: '',
     name: '',
     id: '',
-    Age: '',Gender: 'Female'
+    Age: '', Gender: 'Female'
   }
 
   handlechange = key => val => {
@@ -24,51 +35,38 @@ export default class GeneralDetails extends Component {
     })
   }
 
-  checkcontent =(props)=>{
+  checkcontent = (props) => {
     console.log("checkcontent called")
-    if(this.state.name ===''){
+    if (this.state.name === '') {
       Alert.alert('Please enter the Name of patient')
       return false
-    }
-    else if (this.state.phone===''){
+    } else if (this.state.phone === '') {
       Alert.alert('Please enter the Phone Number of patient')
       return false
-    }
-    else if(this.state.id ===''){
+    } else if (this.state.id === '') {
       Alert.alert('Please enter the Patient ID of patient')
       return false
-    }
-    else if(this.state.age ===''){
-      Alert.alert('Please enter the age of patient')  
+    } else if (this.state.age === '') {
+      Alert.alert('Please enter the age of patient')
       return false
-    }  
-    else if (this.state.phone.length > 10 || this.state.phone.length <10){
+    } else if (this.state.phone.length > 10 || this.state.phone.length < 10) {
       Alert.alert("Wrong Phone Number")
       return false
-    }
-    else if(this.state.age > 150){
+    } else if (this.state.age > 150) {
       Alert.alert('Please check the age of patient')
       return false
-    }
-    else{
-       this.props.navigation.navigate("speDetails")
-     
+    } else {
+      this.props.navigation.navigate("speDetails")
     }
   }
 
-
   render() {
-
     return (
-
-
         <View style={{flex: 1}}>
-
           <View style={styles.container2}>
-
             <View style={styles.overlayStyle}>
               <Text style={styles.overlayTextStyle}>General Details,</Text>
-              <Text style={styles.overlayTextStyle2}>Enter the  general Details Of your Patient.</Text>
+              <Text style={styles.overlayTextStyle2}>Enter the general Details Of your Patient.</Text>
             </View>
           </View>
           <View style={styles.container}>
@@ -91,7 +89,7 @@ export default class GeneralDetails extends Component {
                 />
                 <TextInput
                     mode="outlined"
-                    style={{padding: 10 }}
+                    style={{padding: 10}}
                     theme={{
                       colors: {
                         background: '#fff'
@@ -103,7 +101,6 @@ export default class GeneralDetails extends Component {
                     value={this.state.phone}
                     onChangeText={this.handlechange('phone')}
                     keyboardType='number-pad'
-
                 />
                 <TextInput
 
@@ -120,31 +117,30 @@ export default class GeneralDetails extends Component {
                     clear
                     label="Patient ID"
                 />
-                <View style={{padding:8}}>
-                  <View style={{padding:0,borderRadius:8,borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
+                <View style={{padding: 8}}>
+                  <View
+                      style={{padding: 0, borderRadius: 8, borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
                     <Picker
-                        style={{backgroundColor:'blue',color:'white'}}
-                        itemStyle={{padding:10,borderRadius:4,borderWidth:0,borderColor:'none',backgroundColor:'white'}}
+                        style={{backgroundColor: 'blue', color: 'white'}}
+                        itemStyle={{
+                          padding: 10,
+                          borderRadius: 4,
+                          borderWidth: 0,
+                          borderColor: 'none',
+                          backgroundColor: 'white'
+                        }}
 
                         label="Sex"
                         mode="dropdown"
                         selectedValue={this.state.Gender}
-                        onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
-
-                      <Picker.Item label="Male" value="Male" />
-                      <Picker.Item label="Female" value="Female" />
-                      <Picker.Item label="Others" value="Others" />
-
-
+                        onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})}>
+                      <Picker.Item label="Male" value="Male"/>
+                      <Picker.Item label="Female" value="Female"/>
+                      <Picker.Item label="Others" value="Others"/>
                     </Picker>
                   </View>
-
                 </View>
-
-
-
                 <TextInput
-
                     value={this.state.Age}
                     onChangeText={this.handlechange('Age')}
                     mode="outlined"
@@ -159,37 +155,33 @@ export default class GeneralDetails extends Component {
 
                     keyboardType='number-pad'
                     label="Age"
-                   
                 />
               </Card.Content>
               <Card.Actions style={{justifyContent: 'space-around'}}>
-                <TouchableOpacity  onPress={() => this.props.navigation.goBack()}  >
+                <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                   <Button
-
                       mode="contained"
                       style={styles.BtnTypeGray}>Go Back</Button>
-                </TouchableOpacity><TouchableOpacity  >
-                  <Button
-                      mode="contained"
-                      style={styles.BtnType}
-                      onPress={()=>this.props.navigation.navigate("spDetails")}
-                      >Proceed</Button>
-                </TouchableOpacity>
+                </TouchableOpacity><TouchableOpacity>
+                <Button
+                    mode="contained"
+                    style={styles.BtnType}
+                    onPress={() => this.props.navigation.navigate("spDetails")}
+                >Proceed</Button>
+              </TouchableOpacity>
               </Card.Actions>
-
             </Card>
-
-
           </View>
         </View>
     );
   }
 }
 const styles = StyleSheet.create({
-  BtnType: {backgroundColor:'blue',padding:8,borderRadius:10
-  },BtnTypeGray: {
-    padding:8,
-    backgroundColor:'gray',borderRadius:10
+  BtnType: {
+    backgroundColor: 'blue', padding: 8, borderRadius: 10
+  }, BtnTypeGray: {
+    padding: 8,
+    backgroundColor: 'gray', borderRadius: 10
   },
 
   cardStyle: {

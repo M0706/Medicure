@@ -88,7 +88,6 @@ export default class Home extends Component {
     return (
         <View style={{flex: 1}}>
           <View style={styles.container2}>
-
             <View style={styles.overlayStyle}>
               <Text style={styles.overlayTextStyle}>MY CLIENTS,</Text>
               <Text style={styles.overlayTextStyle2}>This is the list of your clients, Filter the list using the clients
@@ -100,10 +99,8 @@ export default class Home extends Component {
                              background: '#fff'
                            }
                          }}>
-
               </TextInput>
             </View>
-
           </View>
           <View style={styles.container}>
             <SafeAreaView  >
@@ -112,10 +109,8 @@ export default class Home extends Component {
 
                   keyExtractor={(item, index) => item + index}
                   renderItem={({item}) => <Item title={item}/>}
-
               />
             </SafeAreaView>
-
           </View>
           <FAB
               style={styles.fab}
@@ -123,7 +118,6 @@ export default class Home extends Component {
               onPress={() => this.props.navigation.navigate("genDetails")}
           />
         </View>
-
     );
   }
 }
@@ -176,7 +170,6 @@ const styles = StyleSheet.create({
     backgroundColor:'blue',
     bottom: 20,
   },
-
   title: {
     fontSize: 24,
     elevation: 29

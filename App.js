@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import {Text, View} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import Login from './screens/login';
 import SignUp from "./screens/signup";
 import Aux from './hoc/Aux'
@@ -12,6 +12,7 @@ import Home from "./screens/home";
 import GeneralDetails from "./screens/GeneralDetails";
 import SpecialDetails from "./screens/SpecialDetails"
 import Analysis from "./screens/Analysis";
+import Biopsy from "./screens/Biopsy1";
 
 
 //import firebase from 'firebase'
@@ -27,7 +28,6 @@ import Analysis from "./screens/Analysis";
 //     measurementId: "G-LJWEHDDR8M"
 //   };
 // firebase.initializeApp(firebaseConfig);
-
 
 
 // function DrawerContent() {
@@ -47,23 +47,24 @@ import Analysis from "./screens/Analysis";
 //   );
 // }
 const Stack = createStackNavigator();
-export default function App(){
+export default function App() {
   return (
-    <Aux>
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}>
-        <Stack.Screen name="analysis" component={Analysis}/>
-        <Stack.Screen name="genDetails" component={GeneralDetails}/>
-        <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="signUp" component={SignUp}/>
-        <Stack.Screen name="home" component={Home}/>
+      <Aux>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{
+            headerShown: false
+          }}>
+            <Stack.Screen name="biopsy" component={Biopsy}/>
+            <Stack.Screen name="analysis" component={Analysis}/>
+            <Stack.Screen name="genDetails" component={GeneralDetails}/>
+            <Stack.Screen name="login" component={Login}/>
+            <Stack.Screen name="signUp" component={SignUp}/>
+            <Stack.Screen name="home" component={Home}/>
 
-        <Stack.Screen name="spDetails" component={SpecialDetails}/>
+            <Stack.Screen name="spDetails" component={SpecialDetails}/>
 
-      </Stack.Navigator>
-    </NavigationContainer>
-    </Aux>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Aux>
   );
 };
