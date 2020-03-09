@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Alert,
   Text,
-  TouchableOpacity, View, AsyncStorage, Image
+  TouchableOpacity, View, AsyncStorage, Image, Picker
 } from 'react-native';
 
 import {Button, Card, Title, Paragraph, TextInput, Colors, IconButton,Provider,Menu,Divider,RadioButton} from 'react-native-paper';
@@ -16,6 +16,7 @@ export default class SpecialDetails extends Component {
     gene: '',
     locus: '',
     VAF: '',
+    classification:'',
     Bioclassify: '',value: '',
   }
 
@@ -61,21 +62,26 @@ export default class SpecialDetails extends Component {
                     clear
                     label="Locus"
                 />
-                <TextInput
-                    mode="outlined"
-                    style={{padding: 10 }}
-                    theme={{
-                      colors: {
-                        background: '#fff'
-                      }
-                    }}
-                    focused
-                    clear
-                    label="Enter Gene"
-                    value={this.state.gene}
-                    onChangeText={this.handlechange('gene')}
+                <View style={{padding:8}}>
+                  <View style={{padding:0,borderRadius:8,borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
+                    <Picker
+                        style={{backgroundColor:'blue',color:'white'}}
+                        itemStyle={{padding:10,borderRadius:4,borderWidth:0,borderColor:'none',backgroundColor:'white'}}
 
-                />
+                        label="Sex"
+                        mode="dropdown"
+                        selectedValue={this.state.gene}
+                        onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
+
+                      <Picker.Item label="Gene 1" value="1" />
+                      <Picker.Item label="Gene 2" value="2" />
+                      <Picker.Item label="Gene 3" value="3" />
+
+
+                    </Picker>
+                  </View>
+
+                </View>
                 <TextInput
 
                     value={this.state.VAF}
@@ -91,6 +97,26 @@ export default class SpecialDetails extends Component {
                     clear
                     label="Enter Mutation/VAF"
                 />
+                <View style={{padding:8}}>
+                  <View style={{padding:0,borderRadius:8,borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
+                    <Picker
+                        style={{backgroundColor:'blue',color:'white'}}
+                        itemStyle={{padding:10,borderRadius:4,borderWidth:0,borderColor:'none',backgroundColor:'white'}}
+
+                        label="Sex"
+                        mode="dropdown"
+                        selectedValue={this.state.classification}
+                        onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
+
+                      <Picker.Item label="Classification 1" value="1" />
+                      <Picker.Item label="Classification 2" value="2" />
+                      <Picker.Item label="Classification 3" value="3" />
+
+
+                    </Picker>
+                  </View>
+
+                </View>
                 <TextInput
 
                  value={this.state.VAF}
@@ -119,7 +145,7 @@ export default class SpecialDetails extends Component {
                   <Button
                       mode="contained"
                       style={styles.BtnType}
-                      onPress={this.checkcontent ? () => this.props.navigation.navigate("speDetails"):null}
+                      onPress={() => this.props.navigation.navigate("analysis")}
                       >Proceed</Button>
                 </TouchableOpacity>
               </Card.Actions>
