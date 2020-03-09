@@ -11,6 +11,7 @@ import StackNavigator from "@react-navigation/stack/src/navigators/createStackNa
 import Home from "./screens/home";
 import GeneralDetails from "./screens/GeneralDetails";
 import SpecialDetails from "./screens/SpecialDetails"
+import Analysis from "./screens/Analysis";
 
 
 //import firebase from 'firebase'
@@ -53,6 +54,7 @@ export default function App(){
       <Stack.Navigator screenOptions={{
         headerShown: false
       }}>
+        <Stack.Screen name="analysis" component={Analysis}/>
         <Stack.Screen name="genDetails" component={GeneralDetails}/>
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="signUp" component={SignUp}/>
