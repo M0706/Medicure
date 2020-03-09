@@ -57,9 +57,6 @@ export default class GeneralDetails extends Component {
   }
 
 
-  _openMenu = () => this.setState({ visible: true });
-
-  _closeMenu = () => this.setState({ visible: false });
   render() {
 
     return (
