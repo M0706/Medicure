@@ -8,16 +8,18 @@ import Login from './screens/login';
 import SignUp from "./screens/signup";
 import Aux from './hoc/Aux'
 import StackNavigator from "@react-navigation/stack/src/navigators/createStackNavigator";
+import Home from "./screens/home";
+import GeneralDetails from "./screens/GeneralDetails";
 
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 
-function DrawerContent() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Drawer content</Text>
-    </View>
-  );
-}
+// function DrawerContent() {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Drawer content</Text>
+//     </View>
+//   );
+// }
 
 // function HomeScreen() {
 //   return (
@@ -35,8 +37,12 @@ export default function App(){
       <Stack.Navigator screenOptions={{
         headerShown: false
       }}>
+
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="signUp" component={SignUp}/>
+        <Stack.Screen name="home" component={Home}/>
+        <Stack.Screen name="genDetails" component={GeneralDetails}/>
+
       </Stack.Navigator>
 
     </NavigationContainer>
