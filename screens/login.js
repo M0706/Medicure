@@ -15,7 +15,7 @@ export default class loginScreen extends Component {
   state = {
     phone: '',
     name: ''
-  }
+  };
 
   handlechange = key => val => {
     this.setState({
