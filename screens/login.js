@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {IconButton, Card, TextInput} from 'react-native-paper';
 import 'react-native-gesture-handler';
+import home from "./home";
 
 export default class loginScreen extends Component {
 
@@ -25,7 +26,8 @@ export default class loginScreen extends Component {
 
     //save user data
     //alert(this.state.phone + '\n' + this.state.name)
-    await AsyncStorage.setItem("userphone", JSON.stringify(this.state.phone))
+    this.props.navigation.navigate("home");
+    // await AsyncStorage.setItem("userphone", JSON.stringify(this.state.phone))
 
   }
 
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
 
   cardStyle: {
     elevation: 8,
-    marginTop: -350,
+    marginTop: -270,
     borderRadius: 12,
     padding: 8
   },
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 7,
     backgroundColor: '#fff',
-    padding: 30,
+    padding: 18,
     justifyContent: 'center',
     marginTop: 0
   },
