@@ -3,75 +3,44 @@ import {
   StyleSheet,
   Alert,
   Text,
-  TouchableOpacity, View,Picker, AsyncStorage, Image
+  TouchableOpacity, View, AsyncStorage, Image
 } from 'react-native';
-import {Button, Card,Title, Paragraph, TextInput, Colors, IconButton,Provider,Menu,Divider,RadioButton} from 'react-native-paper';
+
+import {Button, Card, Title, Paragraph, TextInput, Colors, IconButton,Provider,Menu,Divider,RadioButton} from 'react-native-paper';
+
 
 
 export default class GeneralDetails extends Component {
 
   state = {
-    phone: '',
-    name: '',
-    id: '',
-    Age: '',Gender: ''
+    gene: '',
+    locus: '',
+    VAF: '',
+    Bioclassify: '',value: '',
   }
 
   handlechange = key => val => {
-    console.log('handlechange function called')
     this.setState({
       [key]: val
     })
   }
 
-  checkcontent =(props)=>{
-    console.log("checkcontent called")
-    if(this.state.name ===''){
-      Alert.alert('Please enter the Name of patient')
-      return false
-    }
-    else if (this.state.phone===''){
-      Alert.alert('Please enter the Phone Number of patient')
-      return false
-    }
-    else if(this.state.id ===''){
-      Alert.alert('Please enter the Patient ID of patient')
-      return false
-    }
-    else if(this.state.age ===''){
-      Alert.alert('Please enter the age of patient')  
-      return false
-    }  
-    else if (this.state.phone.length > 10 || this.state.phone.length <10){
-      Alert.alert("Wrong Phone Number")
-      return false
-    }
-    else if(this.state.age > 150){
-      Alert.alert('Please check the age of patient')
-      return false
-    }
-    else{
-       this.props.navigation.navigate("speDetails")
-     
-    }
-  }
+  
 
 
   _openMenu = () => this.setState({ visible: true });
 
   _closeMenu = () => this.setState({ visible: false });
   render() {
-
+      
     return (
-
-
         <View style={{flex: 1}}>
 
           <View style={styles.container2}>
 
             <View style={styles.overlayStyle}>
-              <Text style={styles.overlayTextStyle}>General Details,</Text>
-              <Text style={styles.overlayTextStyle2}>Enter the  general Details Of your Patient.</Text>
+              <Text style={styles.overlayTextStyle}>Special Details,</Text>
+              <Text style={styles.overlayTextStyle2}>Enter the special Details Of your Patient.</Text>
             </View>
           </View>
           <View style={styles.container}>
@@ -79,8 +48,8 @@ export default class GeneralDetails extends Component {
               <Card.Content>
                 <TextInput
 
-                    value={this.state.name}
-                    onChangeText={this.handlechange('name')}
+                    value={this.state.locus}
+                    onChangeText={this.handlechange('locus')}
                     mode="outlined"
                     style={{padding: 10}}
                     theme={{
@@ -90,7 +59,7 @@ export default class GeneralDetails extends Component {
                     }}
                     focused
                     clear
-                    label="Name"
+                    label="Locus"
                 />
                 <TextInput
                     mode="outlined"
@@ -102,16 +71,15 @@ export default class GeneralDetails extends Component {
                     }}
                     focused
                     clear
-                    label="Phone Number"
-                    value={this.state.phone}
-                    onChangeText={this.handlechange('phone')}
-                    keyboardType='number-pad'
+                    label="Enter Gene"
+                    value={this.state.gene}
+                    onChangeText={this.handlechange('gene')}
 
                 />
                 <TextInput
 
-                    value={this.state.id}
-                    onChangeText={this.handlechange('id')}
+                    value={this.state.VAF}
+                    onChangeText={this.handlechange('VAF')}
                     mode="outlined"
                     style={{padding: 10}}
                     theme={{
@@ -121,45 +89,25 @@ export default class GeneralDetails extends Component {
                     }}
                     focused
                     clear
-                    label="Patient ID"
+                    label="Enter Mutation/VAF"
                 />
+                <TextInput
+
+                 value={this.state.VAF}
+                    onChangeText={this.handlechange('Bioclassify')}
+                    mode="outlined"
+                    style={{padding: 10}}
+                    theme={{
+                    colors: {
+                        background: '#fff'
+                    }
+                    }}
+                    focused
+                    clear
+                    label="Biological Classification"
+                    />
                 
-                  
-                <Picker
-                style={{padding: 10 }}
-                focused
-                clear
-                label="Sex"
-                mode="outlined"
-           selectedValue={this.state.Gender}
-           onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
-
-           <Picker.Item label="Male" value="Male" />
-           <Picker.Item label="Female" value="Female" />
-           <Picker.Item label="Others" value="Others" />
-
-
-         </Picker>
-
-
-                <TextInput
-
-                    value={this.state.Age}
-                    onChangeText={this.handlechange('Age')}
-                    mode="outlined"
-                    style={{padding: 10}}
-                    theme={{
-                      colors: {
-                        background: '#fff'
-                      }
-                    }}
-                    focused
-                    clear
-
-                    keyboardType='number-pad'
-                    label="Age"
-                   
-                />
+            
               </Card.Content>
               <Card.Actions style={{justifyContent: 'space-around'}}>
                 <TouchableOpacity  onPress={() => this.props.navigation.goBack()}  >
@@ -171,7 +119,7 @@ export default class GeneralDetails extends Component {
                   <Button
                       mode="contained"
                       style={styles.BtnType}
-                      onPress={()=>this.checkcontent()}
+                      onPress={this.checkcontent ? () => this.props.navigation.navigate("speDetails"):null}
                       >Proceed</Button>
                 </TouchableOpacity>
               </Card.Actions>

@@ -22,6 +22,7 @@
     "react-native-gesture-handler": "~1.5.0",
     "react-native-material-design": "^0.3.7",
     "react-native-material-design-styles": "^0.2.7",
+    "react-native-material-dropdown": "^0.11.1",
     "react-native-paper": "^3.6.0",
     "react-native-reanimated": "~1.4.0",
     "react-native-safe-area-context": "0.6.0",
