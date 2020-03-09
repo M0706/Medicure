@@ -10,7 +10,7 @@ import Aux from './hoc/Aux'
 import StackNavigator from "@react-navigation/stack/src/navigators/createStackNavigator";
 import Home from "./screens/home";
 import GeneralDetails from "./screens/GeneralDetails";
-import Specialdetails from "./screens/Specialdetails"
+import SpecialDetails from "./screens/SpecialDetails"
 
 
 //import firebase from 'firebase'
@@ -53,12 +53,12 @@ export default function App(){
       <Stack.Navigator screenOptions={{
         headerShown: false
       }}>
-
+        <Stack.Screen name="genDetails" component={GeneralDetails}/>
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="signUp" component={SignUp}/>
         <Stack.Screen name="home" component={Home}/>
-        <Stack.Screen name="genDetails" component={GeneralDetails}/>
-        <Stack.Screen name="speDetails" component={Specialdetails}/>
+
+        <Stack.Screen name="spDetails" component={SpecialDetails}/>
 
       </Stack.Navigator>
     </NavigationContainer>

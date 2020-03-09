@@ -10,7 +10,7 @@ import {Button, Card, Title, Paragraph, TextInput, Colors, IconButton,Provider,M
 
 
 
-export default class GeneralDetails extends Component {
+export default class SpecialDetails extends Component {
 
   state = {
     gene: '',

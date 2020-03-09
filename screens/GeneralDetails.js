@@ -14,7 +14,7 @@ export default class GeneralDetails extends Component {
     phone: '',
     name: '',
     id: '',
-    Age: '',Gender: ''
+    Age: '',Gender: 'Female'
   }
 
   handlechange = key => val => {
@@ -123,23 +123,27 @@ export default class GeneralDetails extends Component {
                     clear
                     label="Patient ID"
                 />
-                
-                  
-                <Picker
-                style={{padding: 10 }}
-                focused
-                clear
-                label="Sex"
-                mode="outlined"
-           selectedValue={this.state.Gender}
-           onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
+                <View style={{padding:8}}>
+                  <View style={{padding:0,borderRadius:8,borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
+                    <Picker
+                        style={{backgroundColor:'blue',color:'white'}}
+                        itemStyle={{padding:10,borderRadius:4,borderWidth:0,borderColor:'none',backgroundColor:'white'}}
 
-           <Picker.Item label="Male" value="Male" />
-           <Picker.Item label="Female" value="Female" />
-           <Picker.Item label="Others" value="Others" />
+                        label="Sex"
+                        mode="dropdown"
+                        selectedValue={this.state.Gender}
+                        onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
+
+                      <Picker.Item label="Male" value="Male" />
+                      <Picker.Item label="Female" value="Female" />
+                      <Picker.Item label="Others" value="Others" />
 
 
-         </Picker>
+                    </Picker>
+                  </View>
+
+                </View>
+
 
 
                 <TextInput
@@ -171,7 +175,7 @@ export default class GeneralDetails extends Component {
                   <Button
                       mode="contained"
                       style={styles.BtnType}
-                      onPress={()=>this.checkcontent()}
+                      onPress={()=>this.props.navigation.navigate("spDetails")}
                       >Proceed</Button>
                 </TouchableOpacity>
               </Card.Actions>
