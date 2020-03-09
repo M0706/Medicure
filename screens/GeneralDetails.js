@@ -115,9 +115,9 @@ export default class GeneralDetails extends Component {
                 />
               </Card.Content>
               <Card.Actions style={{justifyContent: 'space-around'}}>
-                <TouchableOpacity  >
+                <TouchableOpacity  onPress={() => this.props.navigation.goBack()}  >
                   <Button
-                      onPressed={()=>(this.props.navigation.back())}
+
                       mode="contained"
                       style={styles.BtnTypeGray}>Go Back</Button>
                 </TouchableOpacity><TouchableOpacity  >
