@@ -55,14 +55,15 @@ export default function App() {
           <Stack.Navigator screenOptions={{
             headerShown: false
           }}>
-            <Stack.Screen name="flowChart" component={FlowChart}/>
-            <Stack.Screen name="biopsy" component={Biopsy}/>
+
             <Stack.Screen name="login" component={Login}/>
             <Stack.Screen name="signUp" component={SignUp}/>
             <Stack.Screen name="home" component={Home}/>
             <Stack.Screen name="genDetails" component={GeneralDetails}/>
             <Stack.Screen name="spDetails" component={SpecialDetails}/>
             <Stack.Screen name="analysis" component={Analysis}/>
+            <Stack.Screen name="flowChart" component={FlowChart}/>
+            <Stack.Screen name="biopsy" component={Biopsy}/>
 
 
 
