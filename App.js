@@ -13,6 +13,7 @@ import GeneralDetails from "./screens/GeneralDetails";
 import SpecialDetails from "./screens/SpecialDetails"
 import Analysis from "./screens/Analysis";
 import Biopsy from "./screens/Biopsy1";
+import FlowChart from "./screens/FlowChart";
 
 
 //import firebase from 'firebase'
@@ -54,14 +55,16 @@ export default function App() {
           <Stack.Navigator screenOptions={{
             headerShown: false
           }}>
+            <Stack.Screen name="flowChart" component={FlowChart}/>
             <Stack.Screen name="biopsy" component={Biopsy}/>
-            <Stack.Screen name="analysis" component={Analysis}/>
-            <Stack.Screen name="genDetails" component={GeneralDetails}/>
             <Stack.Screen name="login" component={Login}/>
             <Stack.Screen name="signUp" component={SignUp}/>
             <Stack.Screen name="home" component={Home}/>
-
+            <Stack.Screen name="genDetails" component={GeneralDetails}/>
             <Stack.Screen name="spDetails" component={SpecialDetails}/>
+            <Stack.Screen name="analysis" component={Analysis}/>
+
+
 
           </Stack.Navigator>
         </NavigationContainer>
