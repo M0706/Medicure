@@ -15,12 +15,38 @@ import {
   Provider,
   Menu,
   Divider,
-  RadioButton
+  RadioButton, TouchableRipple
 } from 'react-native-paper';
 
 
 export default class Biopsy extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      iconBtnSize: 35,
+      pressedStatusER: true,
+      pressedStatusPR: true,
+      pressedStatusHer2: true,
+    };
+  }
+
+  onPress() {
+
+
+  }
+
+  changeStateER = () => {
+    this.setState({pressedStatusER: !this.state.pressedStatusER});
+
+  };changeStatePR = () => {
+    this.setState({pressedStatusPR: !this.state.pressedStatusPR});
+
+  };changeStateHer2 = () => {
+    this.setState({pressedStatusHer2: !this.state.pressedStatusHer2});
+
+  };
 
   render() {
 
@@ -36,8 +62,69 @@ export default class Biopsy extends Component {
           </View>
           <View style={styles.container}>
             <Card style={styles.cardStyle}>
-
-              <Card.Actions style={{justifyContent: 'space-around'}}>
+              <Card.Content>
+                <View
+                    style={{
+                      flexDirection: "row",
+                      marginTop: 20,
+                      padding: 5,
+                      justifyContent: "space-around",
+                      alignContent: "center"
+                    }}>
+                  <Text style={{textAlignVertical: "center", fontSize: 24, fontWeight: "bold"}}>ER</Text>
+                  <TouchableOpacity onPress={this.changeStateER}>
+                    <IconButton icon='plus' size={this.state.iconBtnSize}
+                                style={this.state.pressedStatusER ? styles.button : styles.buttonPress
+                                }/>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={this.changeStateER}>
+                    <IconButton icon='minus' size={this.state.iconBtnSize}
+                                style={!this.state.pressedStatusER ? styles.button : styles.buttonPressMinus
+                                }/>
+                  </TouchableOpacity>
+                </View>
+                <View
+                    style={{
+                      flexDirection: "row",
+                      marginTop: 20,
+                      padding: 5,
+                      justifyContent: "space-around",
+                      alignContent: "center"
+                    }}>
+                  <Text style={{textAlignVertical: "center", fontSize: 24, fontWeight: "bold"}}>PR</Text>
+                  <TouchableOpacity onPress={this.changeStatePR}>
+                    <IconButton icon='plus' size={this.state.iconBtnSize}
+                                style={this.state.pressedStatusPR ? styles.button : styles.buttonPress
+                                }/>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={this.changeStatePR}>
+                    <IconButton icon='minus' size={this.state.iconBtnSize}
+                                style={!this.state.pressedStatusPR ? styles.button : styles.buttonPressMinus
+                                }/>
+                  </TouchableOpacity>
+                </View>
+                <View
+                    style={{
+                      flexDirection: "row",
+                      marginTop: 20,
+                      padding: 5,
+                      justifyContent: "space-around",
+                      alignContent: "center"
+                    }}>
+                  <Text style={{textAlignVertical: "center", fontSize: 24, fontWeight: "bold"}}>Her2</Text>
+                  <TouchableOpacity onPress={this.changeStateHer2}>
+                    <IconButton icon='plus' size={this.state.iconBtnSize}
+                                style={this.state.pressedStatusHer2 ? styles.button : styles.buttonPress
+                                }/>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={this.changeStateHer2}>
+                    <IconButton icon='minus' size={this.state.iconBtnSize}
+                                style={!this.state.pressedStatusHer2 ? styles.button : styles.buttonPressMinus
+                                }/>
+                  </TouchableOpacity>
+                </View>
+              </Card.Content>
+              <Card.Actions style={{justifyContent: 'space-around', marginTop: 70}}>
                 <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                   <Button
 
@@ -47,7 +134,7 @@ export default class Biopsy extends Component {
                 <Button
                     mode="contained"
                     style={styles.BtnType}
-                    onPress={() => this.props.navigation.navigate("spDetails")}
+                    onPress={() => this.props.navigation.navigate("flowChart",{text1:'this text'})}
                 >Proceed</Button>
               </TouchableOpacity>
               </Card.Actions>
@@ -65,8 +152,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue', padding: 8, borderRadius: 10
   }, BtnTypeGray: {
     padding: 8,
-    backgroundColor: 'gray', borderRadius: 10
+    backgroundColor: '#b1b1b1', borderRadius: 10
   },
+  button: {backgroundColor: '#c1c1c1'},
+  buttonPress: {backgroundColor: '#26bf17'},
+  buttonPressMinus: {backgroundColor: '#dc0000'},
 
   cardStyle: {
     elevation: 16,
