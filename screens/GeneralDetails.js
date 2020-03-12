@@ -18,6 +18,8 @@ import {
   Divider,
   RadioButton
 } from 'react-native-paper';
+import db from "../Database/Database"
+
 
 export default class GeneralDetails extends Component {
 
@@ -56,9 +58,43 @@ export default class GeneralDetails extends Component {
       Alert.alert('Please check the age of patient')
       return false
     } else {
-      this.props.navigation.navigate("speDetails")
+      this.props.navigation.navigate("speDetails",{otherparam: {
+        Name:this.state.name,
+        Age:this.state.Age,
+        Patientid:this.state.id,
+        Gender:this.state.Gender,
+        phone:this.state.phone
+      }})
     }
   }
+
+  saveProduct(){
+    this.setState({
+      flag:true,
+    });
+    let data = {
+      Name:this.state.name,
+      Age:this.state.Age,
+      Patientid:this.state.id,
+      Gender:this.state.Gender,
+      phone:this.state.phone
+    }
+    db.addProduct(data).then((result) => {
+      console.log(result);
+      this.setState({
+        isLoading: false,
+      });
+      
+    }).catch((err) => {
+      console.log(err);
+      this.setState({
+        isLoading: false,
+      });
+    })
+  
+  }
+
+  
 
   render() {
     return (
@@ -158,7 +194,7 @@ export default class GeneralDetails extends Component {
                 />
               </Card.Content>
               <Card.Actions style={{justifyContent: 'space-around'}}>
-                <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("home")}>
                   <Button
                       mode="contained"
                       style={styles.BtnTypeGray}>Go Back</Button>
@@ -166,7 +202,14 @@ export default class GeneralDetails extends Component {
                 <Button
                     mode="contained"
                     style={styles.BtnType}
-                    onPress={() => this.props.navigation.navigate("spDetails")}
+                    onPress={() => this.props.navigation.navigate("spDetails",{otherparam: {
+                      Name:this.state.name,
+                      Age:this.state.Age,
+                      Patientid:this.state.id,
+                      Gender:this.state.Gender,
+                      phone:this.state.phone
+                    }})
+                  }
                 >Proceed</Button>
               </TouchableOpacity>
               </Card.Actions>

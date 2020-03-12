@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
   StyleSheet,
-  Text,
+  Text,StackActions,
   TouchableOpacity, View
 } from 'react-native';
 import {

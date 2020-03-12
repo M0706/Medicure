@@ -8,7 +8,7 @@ import {
 
 import {Button, Card, Title, Paragraph, TextInput, Colors, IconButton,Provider,Menu,Divider,RadioButton} from 'react-native-paper';
 
-
+let data = ''
 
 export default class SpecialDetails extends Component {
 
@@ -20,20 +20,23 @@ export default class SpecialDetails extends Component {
     Bioclassify: '',value: '',
   }
 
+
+
   handlechange = key => val => {
     this.setState({
       [key]: val
     })
   }
 
-  
 
+passdata(data){
+  data={...data, ...this.state}
+  console.log(JSON.stringify({data})) 
+  this.props.navigation.navigate("analysis")
+}
 
-  _openMenu = () => this.setState({ visible: true });
-
-  _closeMenu = () => this.setState({ visible: false });
   render() {
-      
+    data={ ...this.props.route.params}
     return (
         <View style={{flex: 1}}>
 
@@ -42,6 +45,8 @@ export default class SpecialDetails extends Component {
             <View style={styles.overlayStyle}>
               <Text style={styles.overlayTextStyle}>Special Details,</Text>
               <Text style={styles.overlayTextStyle2}>Enter the special Details Of your Patient.</Text>
+          
+              { console.log(JSON.stringify({data})) }
             </View>
           </View>
           <View style={styles.container}>
@@ -68,7 +73,7 @@ export default class SpecialDetails extends Component {
                         style={{backgroundColor:'blue',color:'white'}}
                         itemStyle={{padding:10,borderRadius:4,borderWidth:0,borderColor:'none',backgroundColor:'white'}}
 
-                        label="Sex"
+                        label="Gene"
                         mode="dropdown"
                         selectedValue={this.state.gene}
                         onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
@@ -103,10 +108,10 @@ export default class SpecialDetails extends Component {
                         style={{backgroundColor:'blue',color:'white'}}
                         itemStyle={{padding:10,borderRadius:4,borderWidth:0,borderColor:'none',backgroundColor:'white'}}
 
-                        label="Sex"
+                        label="classifiaction"
                         mode="dropdown"
                         selectedValue={this.state.classification}
-                        onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
+                        onValueChange={(itemValue, itemIndex) => this.setState({classification: itemValue})} >
 
                       <Picker.Item label="Classification 1" value="1" />
                       <Picker.Item label="Classification 2" value="2" />
@@ -119,7 +124,7 @@ export default class SpecialDetails extends Component {
                 </View>
                 <TextInput
 
-                 value={this.state.VAF}
+                    value={this.state.Bioclassify}
                     onChangeText={this.handlechange('Bioclassify')}
                     mode="outlined"
                     style={{padding: 10}}
@@ -145,7 +150,7 @@ export default class SpecialDetails extends Component {
                   <Button
                       mode="contained"
                       style={styles.BtnType}
-                      onPress={() => this.props.navigation.navigate("analysis")}
+                      onPress={() => { this.passdata(data) }}
                       >Proceed</Button>
                 </TouchableOpacity>
               </Card.Actions>
