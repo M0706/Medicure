@@ -3,22 +3,13 @@ import {
   StyleSheet,
   Alert,
   Text,
-  TouchableOpacity, View, Picker, AsyncStorage, Image
+  TouchableOpacity, View, Picker,
 } from 'react-native';
 import {
   Button,
   Card,
-  Title,
-  Paragraph,
   TextInput,
-  Colors,
-  IconButton,
-  Provider,
-  Menu,
-  Divider,
-  RadioButton
 } from 'react-native-paper';
-import db from "../Database/Database"
 
 
 export default class GeneralDetails extends Component {
@@ -31,70 +22,68 @@ export default class GeneralDetails extends Component {
   }
 
   handlechange = key => val => {
-    console.log('handlechange function called')
     this.setState({
       [key]: val
     })
   }
 
-  checkcontent = (props) => {
+  checkcontent() {
     console.log("checkcontent called")
     if (this.state.name === '') {
       Alert.alert('Please enter the Name of patient')
-      return false
+
     } else if (this.state.phone === '') {
       Alert.alert('Please enter the Phone Number of patient')
-      return false
+
     } else if (this.state.id === '') {
       Alert.alert('Please enter the Patient ID of patient')
-      return false
+
     } else if (this.state.age === '') {
       Alert.alert('Please enter the age of patient')
-      return false
+
     } else if (this.state.phone.length > 10 || this.state.phone.length < 10) {
       Alert.alert("Wrong Phone Number")
-      return false
+
     } else if (this.state.age > 150) {
       Alert.alert('Please check the age of patient')
-      return false
+
     } else {
-      this.props.navigation.navigate("speDetails",{otherparam: {
-        Name:this.state.name,
-        Age:this.state.Age,
-        Patientid:this.state.id,
-        Gender:this.state.Gender,
-        phone:this.state.phone
-      }})
+      this.props.navigation.navigate("spDetails", {
+        Name: this.state.name,
+        Age: this.state.Age,
+        Patientid: this.state.id,
+        Gender: this.state.Gender,
+        phone: this.state.phone
+      })
     }
   }
 
-  saveProduct(){
+  saveProduct() {
     this.setState({
-      flag:true,
+      flag: true,
     });
     let data = {
-      Name:this.state.name,
-      Age:this.state.Age,
-      Patientid:this.state.id,
-      Gender:this.state.Gender,
-      phone:this.state.phone
+      Name: this.state.name,
+      Age: this.state.Age,
+      Patientid: this.state.id,
+      Gender: this.state.Gender,
+      phone: this.state.phone
     }
     db.addProduct(data).then((result) => {
       console.log(result);
       this.setState({
         isLoading: false,
       });
-      
+
     }).catch((err) => {
       console.log(err);
       this.setState({
         isLoading: false,
       });
     })
-  
+
   }
 
-  
 
   render() {
     return (
@@ -153,6 +142,22 @@ export default class GeneralDetails extends Component {
                     clear
                     label="Patient ID"
                 />
+                <TextInput
+                    value={this.state.Age}
+                    onChangeText={this.handlechange('Age')}
+                    mode="outlined"
+                    style={{padding: 10}}
+                    theme={{
+                      colors: {
+                        background: '#fff'
+                      }
+                    }}
+                    focused
+                    clear
+
+                    keyboardType='number-pad'
+                    label="Age"
+                />
                 <View style={{padding: 8}}>
                   <View
                       style={{padding: 0, borderRadius: 8, borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
@@ -176,22 +181,6 @@ export default class GeneralDetails extends Component {
                     </Picker>
                   </View>
                 </View>
-                <TextInput
-                    value={this.state.Age}
-                    onChangeText={this.handlechange('Age')}
-                    mode="outlined"
-                    style={{padding: 10}}
-                    theme={{
-                      colors: {
-                        background: '#fff'
-                      }
-                    }}
-                    focused
-                    clear
-
-                    keyboardType='number-pad'
-                    label="Age"
-                />
               </Card.Content>
               <Card.Actions style={{justifyContent: 'space-around'}}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate("home")}>
@@ -202,14 +191,8 @@ export default class GeneralDetails extends Component {
                 <Button
                     mode="contained"
                     style={styles.BtnType}
-                    onPress={() => this.props.navigation.navigate("spDetails",{otherparam: {
-                      Name:this.state.name,
-                      Age:this.state.Age,
-                      Patientid:this.state.id,
-                      Gender:this.state.Gender,
-                      phone:this.state.phone
-                    }})
-                  }
+                    onPress={() => this.checkcontent()
+                    }
                 >Proceed</Button>
               </TouchableOpacity>
               </Card.Actions>
