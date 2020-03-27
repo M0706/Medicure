@@ -3,23 +3,26 @@ import {
   StyleSheet,
   Alert,
   Text,
-  TouchableOpacity, View, AsyncStorage, Image, Picker
+  TouchableOpacity, View, Picker
 } from 'react-native';
 
-import {Button, Card, Title, Paragraph, TextInput, Colors, IconButton,Provider,Menu,Divider,RadioButton} from 'react-native-paper';
+import {
+  Button,
+  Card,
+  TextInput
+} from 'react-native-paper';
 
-let data = ''
+let recievedParams = ''
 
 export default class SpecialDetails extends Component {
 
   state = {
-    gene: '',
+    gene: '1',
     locus: '',
     VAF: '',
-    classification:'',
-    Bioclassify: '',value: '',
+    classification: '1',
+    Bioclassify: '',
   }
-
 
 
   handlechange = key => val => {
@@ -29,31 +32,31 @@ export default class SpecialDetails extends Component {
   }
 
 
-passdata(data){
-  data={...data, ...this.state}
-  console.log(JSON.stringify({data})) 
-  this.props.navigation.navigate("analysis")
-}
+  passdata(data) {
+    if (this.state.Bioclassify && this.state.locus && this.state.VAF) {
+      data = {...data, ...this.state};
+      console.log(data)
+      this.props.navigation.navigate("analysis", data)
+    } else {
+      Alert.alert('Please fill in the fields')
+    }
+
+  }
 
   render() {
-    data={ ...this.props.route.params}
+    recievedParams = this.props.route.params
     return (
         <View style={{flex: 1}}>
-
           <View style={styles.container2}>
-
             <View style={styles.overlayStyle}>
               <Text style={styles.overlayTextStyle}>Special Details,</Text>
               <Text style={styles.overlayTextStyle2}>Enter the special Details Of your Patient.</Text>
-          
-              { console.log(JSON.stringify({data})) }
             </View>
           </View>
           <View style={styles.container}>
             <Card style={styles.cardStyle}>
               <Card.Content>
                 <TextInput
-
                     value={this.state.locus}
                     onChangeText={this.handlechange('locus')}
                     mode="outlined"
@@ -67,28 +70,21 @@ passdata(data){
                     clear
                     label="Locus"
                 />
-                <View style={{padding:8}}>
-                  <View style={{padding:0,borderRadius:8,borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
-                    <Picker
-                        style={{backgroundColor:'blue',color:'white'}}
-                        itemStyle={{padding:10,borderRadius:4,borderWidth:0,borderColor:'none',backgroundColor:'white'}}
-
-                        label="Gene"
-                        mode="dropdown"
-                        selectedValue={this.state.gene}
-                        onValueChange={(itemValue, itemIndex) => this.setState({Gender: itemValue})} >
-
-                      <Picker.Item label="Gene 1" value="1" />
-                      <Picker.Item label="Gene 2" value="2" />
-                      <Picker.Item label="Gene 3" value="3" />
-
-
-                    </Picker>
-                  </View>
-
-                </View>
                 <TextInput
-
+                    value={this.state.Bioclassify}
+                    onChangeText={this.handlechange('Bioclassify')}
+                    mode="outlined"
+                    style={{padding: 10}}
+                    theme={{
+                      colors: {
+                        background: '#fff'
+                      }
+                    }}
+                    focused
+                    clear
+                    label="Biological Classification"
+                />
+                <TextInput
                     value={this.state.VAF}
                     onChangeText={this.handlechange('VAF')}
                     mode="outlined"
@@ -102,72 +98,84 @@ passdata(data){
                     clear
                     label="Enter Mutation/VAF"
                 />
-                <View style={{padding:8}}>
-                  <View style={{padding:0,borderRadius:8,borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
+                <View style={{padding: 8}}>
+                  <View
+                      style={{padding: 0, borderRadius: 8, borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
                     <Picker
-                        style={{backgroundColor:'blue',color:'white'}}
-                        itemStyle={{padding:10,borderRadius:4,borderWidth:0,borderColor:'none',backgroundColor:'white'}}
+                        style={{backgroundColor: 'blue', color: 'white'}}
+                        itemStyle={{
+                          padding: 10,
+                          borderRadius: 4,
+                          borderWidth: 0,
+                          borderColor: 'none',
+                          backgroundColor: 'white'
+                        }}
+                        label="Gene"
+                        mode="dropdown"
+                        selectedValue={this.state.gene}
+                        onValueChange={(itemValue, itemIndex) => this.setState({gene: itemValue})}>
+
+                      <Picker.Item label="Gene 1" value="1"/>
+                      <Picker.Item label="Gene 2" value="2"/>
+                      <Picker.Item label="Gene 3" value="3"/>
+                    </Picker>
+                  </View>
+                </View>
+                <View style={{padding: 8}}>
+                  <View
+                      style={{padding: 0, borderRadius: 8, borderWidth: 0, borderColor: '#bdc3c7', overflow: 'hidden'}}>
+                    <Picker
+                        style={{backgroundColor: 'blue', color: 'white'}}
+                        itemStyle={{
+                          padding: 10,
+                          borderRadius: 4,
+                          borderWidth: 0,
+                          borderColor: 'none',
+                          backgroundColor: 'white'
+                        }}
 
                         label="classifiaction"
                         mode="dropdown"
                         selectedValue={this.state.classification}
-                        onValueChange={(itemValue, itemIndex) => this.setState({classification: itemValue})} >
+                        onValueChange={(itemValue, itemIndex) => this.setState({classification: itemValue})}>
 
-                      <Picker.Item label="Classification 1" value="1" />
-                      <Picker.Item label="Classification 2" value="2" />
-                      <Picker.Item label="Classification 3" value="3" />
+                      <Picker.Item label="Classification 1" value="1"/>
+                      <Picker.Item label="Classification 2" value="2"/>
+                      <Picker.Item label="Classification 3" value="3"/>
 
 
                     </Picker>
                   </View>
 
                 </View>
-                <TextInput
-
-                    value={this.state.Bioclassify}
-                    onChangeText={this.handlechange('Bioclassify')}
-                    mode="outlined"
-                    style={{padding: 10}}
-                    theme={{
-                    colors: {
-                        background: '#fff'
-                    }
-                    }}
-                    focused
-                    clear
-                    label="Biological Classification"
-                    />
-                
-            
               </Card.Content>
               <Card.Actions style={{justifyContent: 'space-around'}}>
-                <TouchableOpacity  onPress={() => this.props.navigation.goBack()}  >
+                <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                   <Button
-
                       mode="contained"
                       style={styles.BtnTypeGray}>Go Back</Button>
-                </TouchableOpacity><TouchableOpacity  >
-                  <Button
-                      mode="contained"
-                      style={styles.BtnType}
-                      onPress={() => { this.passdata(data) }}
-                      >Proceed</Button>
-                </TouchableOpacity>
+                </TouchableOpacity><TouchableOpacity>
+                <Button
+                    mode="contained"
+                    style={styles.BtnType}
+                    onPress={() => {
+                      this.passdata(recievedParams)
+                    }}
+                >Proceed</Button>
+              </TouchableOpacity>
               </Card.Actions>
-
             </Card>
-
-
           </View>
         </View>
     );
   }
 }
 const styles = StyleSheet.create({
-  BtnType: {backgroundColor:'blue',padding:8,borderRadius:10
-  },BtnTypeGray: {
-    padding:8,
-    backgroundColor:'gray',borderRadius:10
+  BtnType: {
+    backgroundColor: 'blue', padding: 8, borderRadius: 10
+  }, BtnTypeGray: {
+    padding: 8,
+    backgroundColor: 'gray', borderRadius: 10
   },
 
   cardStyle: {
