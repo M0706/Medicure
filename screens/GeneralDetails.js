@@ -19,16 +19,16 @@ export default class GeneralDetails extends Component {
     name: '',
     id: '',
     Age: '', Gender: 'Female'
-  }
+  };
 
   handlechange = key => val => {
     this.setState({
       [key]: val
     })
-  }
+  };
 
-  checkcontent() {
-    console.log("checkcontent called")
+  checkContent() {
+    console.log("check content called")
     if (this.state.name === '') {
       Alert.alert('Please enter the Name of patient')
 
@@ -58,31 +58,6 @@ export default class GeneralDetails extends Component {
     }
   }
 
-  saveProduct() {
-    this.setState({
-      flag: true,
-    });
-    let data = {
-      Name: this.state.name,
-      Age: this.state.Age,
-      Patientid: this.state.id,
-      Gender: this.state.Gender,
-      phone: this.state.phone
-    }
-    db.addProduct(data).then((result) => {
-      console.log(result);
-      this.setState({
-        isLoading: false,
-      });
-
-    }).catch((err) => {
-      console.log(err);
-      this.setState({
-        isLoading: false,
-      });
-    })
-
-  }
 
 
   render() {
@@ -191,7 +166,7 @@ export default class GeneralDetails extends Component {
                 <Button
                     mode="contained"
                     style={styles.BtnType}
-                    onPress={() => this.checkcontent()
+                    onPress={() => this.checkContent()
                     }
                 >Proceed</Button>
               </TouchableOpacity>
