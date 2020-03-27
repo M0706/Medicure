@@ -12,7 +12,7 @@ import {
   TextInput
 } from 'react-native-paper';
 
-let recievedParams = ''
+let receivedParams = ''
 
 export default class SpecialDetails extends Component {
 
@@ -22,20 +22,19 @@ export default class SpecialDetails extends Component {
     VAF: '',
     classification: '1',
     Bioclassify: '',
-  }
+  };
 
 
-  handlechange = key => val => {
+  handleChange = key => val => {
     this.setState({
       [key]: val
     })
-  }
+  };
 
 
-  passdata(data) {
+  passData(data) {
     if (this.state.Bioclassify && this.state.locus && this.state.VAF) {
       data = {...data, ...this.state};
-      console.log(data)
       this.props.navigation.navigate("analysis", data)
     } else {
       Alert.alert('Please fill in the fields')
@@ -44,7 +43,7 @@ export default class SpecialDetails extends Component {
   }
 
   render() {
-    recievedParams = this.props.route.params
+    receivedParams = this.props.route.params;
     return (
         <View style={{flex: 1}}>
           <View style={styles.container2}>
@@ -58,7 +57,7 @@ export default class SpecialDetails extends Component {
               <Card.Content>
                 <TextInput
                     value={this.state.locus}
-                    onChangeText={this.handlechange('locus')}
+                    onChangeText={this.handleChange('locus')}
                     mode="outlined"
                     style={{padding: 10}}
                     theme={{
@@ -72,7 +71,7 @@ export default class SpecialDetails extends Component {
                 />
                 <TextInput
                     value={this.state.Bioclassify}
-                    onChangeText={this.handlechange('Bioclassify')}
+                    onChangeText={this.handleChange('Bioclassify')}
                     mode="outlined"
                     style={{padding: 10}}
                     theme={{
@@ -86,7 +85,7 @@ export default class SpecialDetails extends Component {
                 />
                 <TextInput
                     value={this.state.VAF}
-                    onChangeText={this.handlechange('VAF')}
+                    onChangeText={this.handleChange('VAF')}
                     mode="outlined"
                     style={{padding: 10}}
                     theme={{
@@ -159,7 +158,7 @@ export default class SpecialDetails extends Component {
                     mode="contained"
                     style={styles.BtnType}
                     onPress={() => {
-                      this.passdata(recievedParams)
+                      this.passData(receivedParams)
                     }}
                 >Proceed</Button>
               </TouchableOpacity>
