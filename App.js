@@ -60,9 +60,10 @@ export default function App() {
             <Stack.Screen name="home" component={Home}/>
             <Stack.Screen name="genDetails" component={GeneralDetails}/>
             <Stack.Screen name="spDetails" component={SpecialDetails}/>
-            <Stack.Screen name="analysis" component={Analysis}/>
-            <Stack.Screen name="flowChart" component={FlowChart}/>
             <Stack.Screen name="biopsy" component={Biopsy}/>
+            <Stack.Screen name="analysis" component={Analysis}/>
+            
+            <Stack.Screen name="flowChart" component={FlowChart}/>
 
 
 

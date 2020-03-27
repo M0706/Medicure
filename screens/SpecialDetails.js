@@ -34,7 +34,7 @@ export default class SpecialDetails extends Component {
   passData(data) {
     if (this.state.Bioclassify && this.state.locus && this.state.VAF) {
       data = {...data, ...this.state};
-      this.props.navigation.navigate("analysis", data)
+      this.props.navigation.navigate("biopsy", data)
     } else {
       Alert.alert('Please fill in the fields')
     }

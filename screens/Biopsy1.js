@@ -134,7 +134,7 @@ export default class Biopsy extends Component {
                 <Button
                     mode="contained"
                     style={styles.BtnType}
-                    onPress={() => this.props.navigation.navigate("flowChart",{text1:'this text'})}
+                    onPress={() => this.props.navigation.navigate("analysis",{text1:'this text'})}
                 >Proceed</Button>
               </TouchableOpacity>
               </Card.Actions>
