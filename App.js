@@ -14,7 +14,7 @@ import SpecialDetails from "./screens/SpecialDetails"
 import Analysis from "./screens/Analysis";
 import Biopsy from "./screens/Biopsy1";
 import FlowChart from "./screens/FlowChart";
-
+import Afterbiopsy from "./screens/Afterbiopsy"
 
 //import firebase from 'firebase'
 
@@ -55,6 +55,7 @@ export default function App() {
           <Stack.Navigator screenOptions={{
             headerShown: false
           }}>
+            <Stack.Screen name="Afterbiopsy" component={Afterbiopsy}/>
             <Stack.Screen name="login" component={Login}/>
             <Stack.Screen name="signUp" component={SignUp}/>
             <Stack.Screen name="home" component={Home}/>
