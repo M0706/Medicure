@@ -18,7 +18,7 @@ export default class Analysis extends Component {
       tx.executeSql('SELECT * FROM patient_table', [], (tx, results) => {
         console.log('Table exists');
         db.transaction(tx => {
-          tx.executeSql(' INSERT INTO patient_table VALUES (?,?,?,?,?,?,?,?,?,?)', [data['Age'], data['Bioclassify'], data['Gender'], data['Name'], data['Patientid'], data['VAF'], data['classification'], data['gene'], data['locus'], data['phone']], (tx, results) => {
+          tx.executeSql(' INSERT INTO patient_table VALUES (?,?,?,?,?,?,?,?,?,?)', [data['Age'], data['Bioclassify'], data['Gender'], data['Name'], data['Patientid'], data['VAF'], data['classification'], data['gene'], data['locus'], data['phone'],data['pressedStatusER'],data['pressedStatusPR'],data['pressedStatusHer2']], (tx, results) => {
             console.log('Data entered')
           }, (tx, error) => {
             console.log(error)
@@ -26,7 +26,7 @@ export default class Analysis extends Component {
         });
       }, (tx, error) => {
         db.transaction(tx => {
-          tx.executeSql('  CREATE TABLE patient_table (Age varchar(3),BioClassify varchar(100),Gender varchar(10),Name varchar(100),Id varchar(100),VAF varchar(100),Cl varchar(100),Gene varchar(100),Locus varchar(100),Phone varchar(10))\n', [], (tx, results) => {
+          tx.executeSql('  CREATE TABLE patient_table (Age varchar(3),BioClassify varchar(100),Gender varchar(10),Name varchar(100),Id varchar(100),VAF varchar(100),Cl varchar(100),Gene varchar(100),Locus varchar(100),Phone varchar(10),ER boolean(7),PR boolean(7), HER2 boolean(7))\n', [], (tx, results) => {
             console.log('Table Created')
           }, (tx, error) => {
             console.log(error)

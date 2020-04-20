@@ -33,7 +33,7 @@ export default class Home extends Component {
     }
   }
 
-  loadM() {
+  loadData() {
     const db = SQLite.openDatabase('PatientDB');
     db.transaction(
         (tx) => {
@@ -51,7 +51,7 @@ export default class Home extends Component {
   }
 
   render() {
-    this.loadM();
+    this.loadData();
     return (
         <View style={{flex: 1}}>
           <View style={styles.container2}>

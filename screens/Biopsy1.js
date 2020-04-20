@@ -18,6 +18,8 @@ import {
   RadioButton, TouchableRipple
 } from 'react-native-paper';
 
+let receivedParams = '';
+
 
 export default class Biopsy extends Component {
 
@@ -26,9 +28,9 @@ export default class Biopsy extends Component {
 
     this.state = {
       iconBtnSize: 35,
-      pressedStatusER: true,
-      pressedStatusPR: true,
-      pressedStatusHer2: true,
+      pressedStatusER: false,   
+      pressedStatusPR: false,
+      pressedStatusHer2: false,
     };
   }
 
@@ -42,18 +44,22 @@ export default class Biopsy extends Component {
 
   };changeStatePR = () => {
     this.setState({pressedStatusPR: !this.state.pressedStatusPR});
-
+ 
   };changeStateHer2 = () => {
     this.setState({pressedStatusHer2: !this.state.pressedStatusHer2});
 
   };
 
+  passdata(data){
+    data={...data,...this.state}
+    this.props.navigation.navigate("analysis",data)
+  }
+  
+
   render() {
-
+    receivedParams=this.props.route.params;
     return (
-
-
-        <View style={{flex: 1}}>
+      <View style={{flex: 1}}>
           <View style={styles.container2}>
             <View style={styles.overlayStyle}>
               <Text style={styles.overlayTextStyle}>Biopsy Report 1</Text>
@@ -134,7 +140,7 @@ export default class Biopsy extends Component {
                 <Button
                     mode="contained"
                     style={styles.BtnType}
-                    onPress={() => this.props.navigation.navigate("analysis",{text1:'this text'})}
+                    onPress={() => this.passdata(receivedParams)}
                 >Proceed</Button>
               </TouchableOpacity>
               </Card.Actions>
@@ -154,7 +160,7 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: '#b1b1b1', borderRadius: 10
   },
-  button: {backgroundColor: '#c1c1c1'},
+  button: {backgroundColor: '#c1c1c1'},   //#26bf17
   buttonPress: {backgroundColor: '#26bf17'},
   buttonPressMinus: {backgroundColor: '#dc0000'},
 
