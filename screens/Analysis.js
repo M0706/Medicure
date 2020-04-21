@@ -17,8 +17,9 @@ export default class Analysis extends Component {
     db.transaction(tx => {
       tx.executeSql('SELECT * FROM patient_table', [], (tx, results) => {
         console.log('Table exists');
+        //console.log(data)
         db.transaction(tx => {
-          tx.executeSql(' INSERT INTO patient_table VALUES (?,?,?,?,?,?,?,?,?,?.?,?,?)', [data['Age'], data['Bioclassify'], data['Gender'], data['Name'], data['Patientid'], data['VAF'], data['classification'], data['gene'], data['locus'], data['phone'],data['pressedStatusER'],data['pressedStatusPR'],data['pressedStatusHer2']], (tx, results) => {
+          tx.executeSql(' INSERT INTO patient_table VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', [data['Age'], data['Bioclassify'], data['Gender'], data['Name'], data['Patientid'], data['VAF'], data['classification'], data['gene'], data['locus'], data['phone'],data['pressedStatusER'],data['pressedStatusPR'],data['pressedStatusHer2']], (tx, results) => {
             console.log('Data entered')
           }, (tx, error) => {
             console.log(error)
