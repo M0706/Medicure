@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Aux from '../hoc/Aux'
 import * as SQLite from 'expo-sqlite';
 import {
   Text,
@@ -37,9 +38,56 @@ export default class Analysis extends Component {
     });
     this.props.navigation.navigate("home");
   }
+
+
   render() {
     let passedData = this.props.route.params;
+    let result = 'Could not identify the type of cancer';
+    let obj={'Analysis':'','ESR1PTENCNV':false,'TreatmentPLan':""}
+    console.log(passedData)
+    if(passedData){
+      if(passedData['locus'].toUpperCase()=='BRCA1' || passedData['locus'].toUpperCase()=='BRCA2'){
+        if(passedData['Bioclassify'].toUpperCase()=='ABC1' || passedData['Bioclassify'].toUpperCase()=='ABC2'){
+          if(passedData['VAF']<='10'){
+            result=' Diagnosed With - Breast Cancer (Grade 1)'
+          }
+          else if(passedData['VAF']<='30'){
+            result=' Diagnosed With - Breast Cancer (Grade 2)'
+          }
+          else if(passedData['VAF']<='60'){
+            result=' Diagnosed With - Breast Cancer (Grade 3)'
+          }
+          else{
+            result=' Diagnosed With - Breast Cancer (Grade 4)'
+          }
+        }
+      }
+      else if(passedData['locus']=='chr6:152419926'){
+        if(passedData['bioclassify'].toUpperCase()=='ONCOGENIC'){
+          if(passedData['classification']=='1' && passedData['VAF']<'21'){
+            if(passedData['gene'].toUpperCase()=='ESR1'){
+              result='Diagnosed with - Breast Cancer (ESR1)'
+
+            }
+          }
+        }
+      }
+      else if(passedData['locus'].toUpperCase()=='TP53' || passedData['locus'].toUpperCase()=='CHEK2'){
+        result='Diagnosed With - Brain Cancer (Li-Fraumeni Syndrome)'
+      }
+      else if(passedData['locus'].toUpperCase()=='TSC1' || passedData['locus'].toUpperCase()=='TSC2'){
+        result='Diagnosed With - Brain Cancer (Tuberous Sceloris )'
+      }
+    }
+    else if(passedData['gene'].toUpperCase()=='ESR1'){
+      if(passedData['pressedStatusER']==true && passedData['pressedStatusHer2']==false && pressedStatusPR['pressedStatusPR']==true){
+        obj['Analysis']='Analysis of ESR1,PTEN and CNV'
+        obj['ESR1PTENCNV']=true
+        obj['TreatmentPlan']="Analysis of ESR1, PTEN and CNV --- \n TO choose further line of treatment plan \n  "
+      }
+    }
     return (
+      <Aux>
         <View style={{flex: 1}}>
           <View style={styles.container2}>
             <View style={styles.overlayStyle}>
@@ -54,14 +102,15 @@ export default class Analysis extends Component {
               <Card.Title title={"+91 " + passedData['phone']} titleStyle={{fontSize: 16}}/>
               <Card.Content>
                 <Text>
-                  Diagnosed With - Breast Cancer
+                  {result}
                 </Text>
                 <Text>
-                  Analysis of following of CCND1:
+                {obj['Analysis']==""?"":obj['Analysis']}              
                 </Text>
-                <Text>{'\u2022'} ESR1</Text>
-                <Text>{'\u2022'} PTEN</Text>
-                <Text>{'\u2022'} CNV</Text>
+                <Text>
+                {obj['ESR1PTENCNV']==true?obj['TreatmentPLan']:''} 
+                </Text>
+
               </Card.Content>
               <Card.Actions style={{justifyContent: 'space-around', marginTop: 120, marginBottom: 20}}>
                 <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
@@ -79,6 +128,7 @@ export default class Analysis extends Component {
             </Card>
           </View>
         </View>
+        </Aux>
     );
   }
 }

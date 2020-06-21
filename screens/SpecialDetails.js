@@ -16,7 +16,7 @@ let receivedParams = '';
 export default class SpecialDetails extends Component {
 
   state = {
-    gene: '1',
+    gene: '',
     locus: '',
     VAF: '',
     classification: '1',
@@ -113,9 +113,9 @@ export default class SpecialDetails extends Component {
                         selectedValue={this.state.gene}
                         onValueChange={(itemValue, itemIndex) => this.setState({gene: itemValue})}>
 
-                      <Picker.Item label="Gene 1" value="1"/>
-                      <Picker.Item label="Gene 2" value="2"/>
-                      <Picker.Item label="Gene 3" value="3"/>
+                      <Picker.Item label="ESR1" value="ESR1"/>
+                      <Picker.Item label="Gene 2" value="ABC"/>
+                      <Picker.Item label="Gene 3" value="XYZ"/>
                     </Picker>
                   </View>
                 </View>
@@ -132,7 +132,7 @@ export default class SpecialDetails extends Component {
                           backgroundColor: 'white'
                         }}
 
-                        label="classifiaction"
+                        label="classification"
                         mode="dropdown"
                         selectedValue={this.state.classification}
                         onValueChange={(itemValue, itemIndex) => this.setState({classification: itemValue})}>
