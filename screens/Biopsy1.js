@@ -80,12 +80,12 @@ export default class Biopsy extends Component {
                   <Text style={{textAlignVertical: "center", fontSize: 24, fontWeight: "bold"}}>ER</Text>
                   <TouchableOpacity onPress={this.changeStateER}>
                     <IconButton icon='plus' size={this.state.iconBtnSize}
-                                style={this.state.pressedStatusER ? styles.button : styles.buttonPress
+                                style={!this.state.pressedStatusER ? styles.button : styles.buttonPress
                                 }/>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={this.changeStateER}>
                     <IconButton icon='minus' size={this.state.iconBtnSize}
-                                style={!this.state.pressedStatusER ? styles.button : styles.buttonPressMinus
+                                style={this.state.pressedStatusER ? styles.button : styles.buttonPressMinus
                                 }/>
                   </TouchableOpacity>
                 </View>
@@ -100,12 +100,12 @@ export default class Biopsy extends Component {
                   <Text style={{textAlignVertical: "center", fontSize: 24, fontWeight: "bold"}}>PR</Text>
                   <TouchableOpacity onPress={this.changeStatePR}>
                     <IconButton icon='plus' size={this.state.iconBtnSize}
-                                style={this.state.pressedStatusPR ? styles.button : styles.buttonPress
+                                style={!this.state.pressedStatusPR ? styles.button : styles.buttonPress
                                 }/>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={this.changeStatePR}>
                     <IconButton icon='minus' size={this.state.iconBtnSize}
-                                style={!this.state.pressedStatusPR ? styles.button : styles.buttonPressMinus
+                                style={this.state.pressedStatusPR ? styles.button : styles.buttonPressMinus
                                 }/>
                   </TouchableOpacity>
                 </View>
@@ -120,12 +120,12 @@ export default class Biopsy extends Component {
                   <Text style={{textAlignVertical: "center", fontSize: 24, fontWeight: "bold"}}>Her2</Text>
                   <TouchableOpacity onPress={this.changeStateHer2}>
                     <IconButton icon='plus' size={this.state.iconBtnSize}
-                                style={this.state.pressedStatusHer2 ? styles.button : styles.buttonPress
+                                style={!this.state.pressedStatusHer2 ? styles.button : styles.buttonPress
                                 }/>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={this.changeStateHer2}>
                     <IconButton icon='minus' size={this.state.iconBtnSize}
-                                style={!this.state.pressedStatusHer2 ? styles.button : styles.buttonPressMinus
+                                style={this.state.pressedStatusHer2 ? styles.button : styles.buttonPressMinus
                                 }/>
                   </TouchableOpacity>
                 </View>
